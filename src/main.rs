@@ -1,5 +1,7 @@
 use std::io;
-use exercism::is_armstrong_number;
+use armstrong::is_armstrong_number;
+
+pub mod armstrong;
 
 fn main() {
     let mut input = String::new();
@@ -10,9 +12,7 @@ fn main() {
         .expect("Không thể đọc dữ liệu từ dòng lệnh");
 
     let input = match input.trim().parse::<i32>() {
-        Ok(number) => {
-            number
-        }
+        Ok(number) => number,
         Err(_) => {
             println!("Không thể chuyển đổi thành i32");
             return; // Thoát khỏi chương trình nếu không thể chuyển đổi
