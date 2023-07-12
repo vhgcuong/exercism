@@ -1,5 +1,7 @@
 use std::io;
-use exercism::is_armstrong_number;
+use crate::armstrong::is_armstrong_number;
+
+pub mod armstrong;
 
 fn main() {
     let mut input = String::new();
