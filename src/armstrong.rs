@@ -1,5 +1,4 @@
-pub fn is_armstrong_number(num: u32) -> bool
-{
+pub fn is_armstrong_number(num: u32) -> bool {
     if num < 10 {
         return true;
     }
@@ -15,7 +14,7 @@ pub fn is_armstrong_number(num: u32) -> bool
 }
 
 #[cfg(test)]
-mod tests {
+mod armstrong_tests {
     use super::*;
 
     #[test]
