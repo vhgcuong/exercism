@@ -1,7 +1,9 @@
 use std::io;
 use armstrong::is_armstrong_number;
+use nth_prime::nth_prime::nth;
 
 pub mod armstrong;
+pub mod nth_prime;
 
 fn main() {
     let mut input = String::new();
@@ -19,5 +21,7 @@ fn main() {
         }
     };
 
-    is_armstrong_number(input as u32);
+    // is_armstrong_number(input as u32);
+
+   println!("{:?}", nth(input as u32));
 }
