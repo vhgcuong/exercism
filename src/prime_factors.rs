@@ -1,19 +1,12 @@
 pub fn factors(n: u64) -> Vec<u64> {
-    let mut primes: Vec<u64> = vec![];
     let mut number = n;
-    let mut index = 2;
-
+    let mut prime_factors = vec![];
     while number > 1 {
-        if number % index == 0 {
-            number /= index;
-            primes.push(index);
-        } else {
-            index += 1;
-        }
-        println!("{:?}", index);
+        let i = (2..number+1).find(|x| number % x == 0 ).unwrap();
+        prime_factors.push(i);
+        number /= i;
     }
-
-    primes
+    prime_factors
 }
 
 #[cfg(test)]
