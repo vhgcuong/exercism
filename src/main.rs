@@ -1,14 +1,15 @@
 use std::io;
-use exercism::squares::squares::{difference, square_of_sum};
+
 // use crate::prime_factors::factors;
 // use armstrong::is_armstrong_number;
 // use nth_prime::nth_prime::nth;
+use raindrops::raindrops;
 
 // pub mod armstrong;
 // pub mod nth_prime;
 // pub mod prime_factors;
-
-pub mod sum_of_multiples;
+// pub mod sum_of_multiples;
+pub mod raindrops;
 
 fn main() {
     let mut input = String::new();
@@ -34,5 +35,7 @@ fn main() {
 
     // println!("{}", sum_of_multiples::sum_of_multiples(4, &[3, 0]));
 
-    print!("{}", difference(input as u64));
+    // print!("{}", difference(input as u64));
+
+    println!("{}", raindrops(input as u32))
 }
