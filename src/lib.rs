@@ -5,3 +5,4 @@ pub mod sum_of_multiples;
 pub mod squares;
 pub mod raindrops;
 pub mod proverb;
+pub mod reverse;
