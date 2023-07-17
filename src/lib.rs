@@ -4,3 +4,4 @@ pub mod prime_factors;
 pub mod sum_of_multiples;
 pub mod squares;
 pub mod raindrops;
+pub mod proverb;
