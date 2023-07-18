@@ -3,13 +3,15 @@ use std::io;
 // use crate::prime_factors::factors;
 // use armstrong::is_armstrong_number;
 // use nth_prime::nth_prime::nth;
-use raindrops::raindrops;
+// use raindrops::raindrops;
+// use reverse::reverse;
 
 // pub mod armstrong;
 // pub mod nth_prime;
 // pub mod prime_factors;
 // pub mod sum_of_multiples;
-pub mod raindrops;
+// pub mod raindrops;
+// pub mod reverse;
 
 fn main() {
     let mut input = String::new();
@@ -37,5 +39,5 @@ fn main() {
 
     // print!("{}", difference(input as u64));
 
-    println!("{}", raindrops(input as u32))
+    // println!("{}", raindrops(input as u32))
 }
