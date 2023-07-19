@@ -10,10 +10,10 @@ pub fn reverse(input: &str) -> String {
     //
     // str_reverse
 
-    /// Cach 2
+    // Cach 2
     // input.chars().rev().collect()
 
-    /// Cach 3
+    // Cach 3
     input.rsplit("").collect()
 }
 

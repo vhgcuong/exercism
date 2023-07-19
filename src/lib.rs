@@ -6,3 +6,4 @@ pub mod squares;
 pub mod raindrops;
 pub mod proverb;
 pub mod reverse;
+pub mod matching_brackets;
