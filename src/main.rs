@@ -39,5 +39,9 @@ fn main() {
 
     // print!("{}", difference(input as u64));
 
-    // println!("{}", raindrops(input as u32))
+    // println!("{}", raindrops(input as u32));
+
+    let digits: Vec<char> = vec!['1', '2', '3'];
+    println!("{:?}", digits[1..0]);
+
 }
