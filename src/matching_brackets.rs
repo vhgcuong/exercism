@@ -1,13 +1,11 @@
 pub fn brackets_are_balanced(string: &str) -> bool {
-    let mut brackets: Vec<char> = Vec::new();
-    for c in string.chars() {
-        println!("{:?}", brackets);
-        match c {
-            '(' | '{' | '[' => brackets.push(c),
-            ')' => if brackets.pop() != Some('(') {return false},
-            ']' => if brackets.pop() != Some('[') {return false},
-            '}' => if brackets.pop() != Some('{') {return false},
-            _ => ()
+    let mut brackets: String = string.chars().filter(|c| "()[]{}".contains(*c)).collect();
+    loop {
+        match () {
+            _ if brackets.contains("()") => brackets = brackets.split("()").collect(),
+            _ if brackets.contains("[]") => brackets = brackets.split("[]").collect(),
+            _ if brackets.contains("{}") => brackets = brackets.split("{}").collect(),
+            _ => break,
         }
     }
     brackets.is_empty()
