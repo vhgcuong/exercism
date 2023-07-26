@@ -41,7 +41,7 @@ fn main() {
 
     // println!("{}", raindrops(input as u32));
 
-    let digits: Vec<char> = vec!['1', '2', '3'];
-    println!("{:?}", digits[1..0]);
+    // let digits: Vec<char> = vec!['1', '2', '3'];
+    // println!("{:?}", digits[1..0]);
 
 }
