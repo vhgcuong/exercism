@@ -8,3 +8,4 @@ pub mod proverb;
 pub mod reverse;
 pub mod matching_brackets;
 pub mod series;
+pub mod collatz_conjecture;
