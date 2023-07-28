@@ -12,3 +12,4 @@ mod sum_of_multiples;
 mod collatz_conjecture;
 
 mod sublist;
+mod luhn;

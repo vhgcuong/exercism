@@ -12,3 +12,4 @@ pub mod series;
 pub mod collatz_conjecture;
 
 pub mod sublist;
+pub mod luhn;
