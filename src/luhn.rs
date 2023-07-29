@@ -1,15 +1,12 @@
 /// Check a Luhn checksum.
-pub fn is_valid(s: &str) -> bool {
-    let mut sum = 0;
-    let mut len = 0;
-    for (i, c) in s.chars().rev().filter(|&c| c != ' ').enumerate() {
-        len += 1;
-        match (i % 2, c.to_digit(10)) {
-            (1, Some(x)) if x > 4 => sum += x * 2 - 9,
-            (1, Some(x)) => sum += x * 2,
-            (0, Some(x)) => sum += x,
-            (_, _) => return false
-        }
-    }
-    (len > 1) && (sum % 10 == 0)
+pub fn is_valid(code: &str) -> bool {
+    code.chars()
+        .rev()
+        .filter(|c| !c.is_whitespace())
+        .try_fold((0, 0), |(sum, count), val| {
+            val.to_digit(10)
+                .map(|num| if count % 2 == 1 { num * 2 } else { num })
+                .map(|num| if num > 9 { num - 9 } else { num })
+                .map(|num| (num + sum, count + 1))
+        }).map_or(false, |(sum, count)| sum % 10 == 0 && count > 1)
 }
