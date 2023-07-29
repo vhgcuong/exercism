@@ -1,29 +1,31 @@
 /// Check a Luhn checksum.
 pub fn is_valid(code: &str) -> bool {
-    let numbers: Vec<_> = code.replace(" ", "").chars().rev().collect();
-    if numbers.len() <= 1 {
-        return false;
-    }
+    let mut sum = 0;
+    let numbers: Vec<char> = code.chars().rev().collect();
+    let mut index = 0;
 
-    let is_numeric = numbers.iter().all(|x| x.is_numeric());
-    if is_numeric {
-        let mut sum: u32 = 0;
-        for (index, value) in numbers.iter().enumerate() {
-            if let Some(number) = value.to_digit(10) {
-                match index % 2 == 0 {
-                    true => sum += number,
-                    false => {
-                        sum += match number * 2 >= 10 {
-                            true => number * 2 - 9,
-                            false => number * 2
-                        }
-                    }
-                }
-            }
+    for number in numbers {
+        if number.is_whitespace() {
+            continue;
         }
 
-        return sum % 10 == 0;
+        match number.to_digit(10) {
+            Some(value) => {
+                if index % 2 == 0 {
+                    sum += value;
+                } else {
+                    if value > 4 {
+                        sum += value * 2 - 9;
+                    } else {
+                        sum += value * 2;
+                    }
+                }
+
+                index += 1;
+            },
+            None => return false
+        }
     }
 
-    false
+    index > 1 && sum % 10 == 0
 }
