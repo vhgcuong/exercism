@@ -13,3 +13,4 @@ pub mod collatz_conjecture;
 
 pub mod sublist;
 pub mod luhn;
+pub mod largest_series_product;

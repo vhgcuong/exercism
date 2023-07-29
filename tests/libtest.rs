@@ -13,3 +13,4 @@ mod collatz_conjecture;
 
 mod sublist;
 mod luhn;
+mod largest_series_product;
