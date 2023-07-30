@@ -10,6 +10,7 @@ mod series;
 mod squares;
 mod sum_of_multiples;
 mod collatz_conjecture;
+mod high_scores;
 
 mod sublist;
 mod luhn;
