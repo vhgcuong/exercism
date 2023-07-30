@@ -1,17 +1,15 @@
 #[derive(Debug)]
-pub struct HighScores {
-    scores: Vec<u32>
+pub struct HighScores<'a> {
+    scores: &'a [u32],
 }
 
-impl HighScores {
-    pub fn new(scores: &[u32]) -> Self {
-        HighScores {
-            scores: Vec::from(scores),
-        }
+impl<'a> HighScores<'a> {
+    pub fn new(scores: &'a [u32]) -> Self {
+        HighScores { scores }
     }
 
     pub fn scores(&self) -> &[u32] {
-        &self.scores
+        self.scores
     }
 
     pub fn latest(&self) -> Option<u32> {
@@ -23,8 +21,9 @@ impl HighScores {
     }
 
     pub fn personal_top_three(&self) -> Vec<u32> {
-        let mut sorted_scores = self.scores.clone();
-        sorted_scores.sort_by(|a, b| b.cmp(a));
-        sorted_scores.iter().take(3).cloned().collect()
+        let mut res_vec = self.scores.to_vec();
+        res_vec.sort_unstable_by(|a, b| b.cmp(a));
+        res_vec.truncate(3);
+        res_vec
     }
 }
