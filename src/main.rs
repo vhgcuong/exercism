@@ -13,7 +13,9 @@
 // pub mod raindrops;
 // pub mod reverse;
 
-pub mod luhn;
+// pub mod luhn;
+
+pub mod largest_series_product;
 
 fn main() {
     // let mut input = String::new();
@@ -45,6 +47,10 @@ fn main() {
 
     // let digits: Vec<char> = vec!['1', '2', '3'];
     // println!("{:?}", digits[1..0]);
-    let code = "8569 6195 0383 3437";
-    println!("{}", luhn::is_valid(code));
+
+    // let code = "8569 6195 0383 3437";
+    // println!("{}", luhn::is_valid(code));
+
+    println!("{:?}", largest_series_product::lsp("", 3));
+
 }

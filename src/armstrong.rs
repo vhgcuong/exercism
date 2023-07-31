@@ -11,6 +11,5 @@ pub fn is_armstrong_number(num: u32) -> bool {
         candidate /= 10;
     }
 
-    println!("{:?}", total);
     num == total
 }
