@@ -15,3 +15,4 @@ mod high_scores;
 mod sublist;
 mod luhn;
 mod largest_series_product;
+mod palindrome_products;
