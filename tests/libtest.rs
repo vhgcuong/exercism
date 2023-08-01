@@ -1,19 +1,20 @@
 #[cfg(test)]
-mod armstrong;
-mod matching_brackets;
-mod proverb;
-mod reverse;
-mod nth_prime;
-mod prime_factors;
-mod raindrop;
-mod series;
-mod squares;
-mod sum_of_multiples;
-mod collatz_conjecture;
-mod high_scores;
 mod leap;
+mod series;
+mod reverse;
+mod proverb;
+mod squares;
+mod raindrop;
+mod armstrong;
+mod nth_prime;
+mod bear_song;
+mod high_scores;
+mod prime_factors;
+mod sum_of_multiples;
+mod matching_brackets;
+mod collatz_conjecture;
 
-mod sublist;
 mod luhn;
-mod largest_series_product;
+mod sublist;
 mod palindrome_products;
+mod largest_series_product;
