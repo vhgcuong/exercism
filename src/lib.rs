@@ -11,6 +11,7 @@ pub mod matching_brackets;
 pub mod series;
 pub mod collatz_conjecture;
 pub mod high_scores;
+pub mod leap;
 
 pub mod sublist;
 pub mod luhn;
