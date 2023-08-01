@@ -14,8 +14,8 @@
 // pub mod reverse;
 
 // pub mod luhn;
-
-pub mod largest_series_product;
+use palindrome::*;
+pub mod palindrome;
 
 fn main() {
     // let mut input = String::new();
@@ -51,6 +51,9 @@ fn main() {
     // let code = "8569 6195 0383 3437";
     // println!("{}", luhn::is_valid(code));
 
-    println!("{:?}", largest_series_product::lsp("", 3));
+    // println!("{:?}", largest_series_product::lsp("", 3));
 
+    // Palindrome::new(123456);
+
+    palindrome_products(1, 9);
 }

@@ -8,17 +8,34 @@ pub struct Palindrome(u64);
 impl Palindrome {
     /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
     pub fn new(value: u64) -> Option<Palindrome> {
-        unimplemented!("if the value {value} is a palindrome return Some, otherwise return None");
+        let str_value: String = value.to_string().chars().rev().collect();
+        match str_value == value.to_string() {
+            true => Some(Palindrome(value)),
+            false => None
+        }
     }
 
     /// Get the value of this palindrome.
     pub fn into_inner(self) -> u64 {
-        unimplemented!("return inner value of a Palindrome");
+        self.0
     }
 }
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    unimplemented!(
-        "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
-    );
+    let mut products: Vec<u64> = Vec::new();
+    for item in min..=max {
+        for value in min..=max {
+            let multiple: u64 = item * value;
+            if !products.contains(&multiple) && Palindrome::new(multiple) != None {
+                products.push(multiple);
+            }
+
+        }
+    }
+
+
+    Some((
+        Palindrome(products.iter().min().unwrap_or_else(None)),
+        Palindrome(1)
+    ))
 }
