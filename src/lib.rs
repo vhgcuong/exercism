@@ -10,6 +10,7 @@ pub mod armstrong;
 pub mod raindrops;
 pub mod high_scores;
 pub mod prime_factors;
+pub mod diffie_hellman;
 pub mod sum_of_multiples;
 pub mod matching_brackets;
 pub mod collatz_conjecture;

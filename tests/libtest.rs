@@ -11,6 +11,7 @@ mod nth_prime;
 mod bear_song;
 mod high_scores;
 mod prime_factors;
+mod diffie_hellman;
 mod sum_of_multiples;
 mod matching_brackets;
 mod collatz_conjecture;
