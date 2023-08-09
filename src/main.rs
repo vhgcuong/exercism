@@ -1,4 +1,4 @@
-// use std::io;
+use std::io;
 
 // use crate::prime_factors::factors;
 // use armstrong::is_armstrong_number;
@@ -32,7 +32,7 @@ fn main() {
     //         return; // Thoát khỏi chương trình nếu không thể chuyển đổi
     //     }
     // };
-
+    //
     // is_armstrong_number(input as u32);
 
    // nth(input as u32);
@@ -55,5 +55,5 @@ fn main() {
 
     // Palindrome::new(123456);
 
-    palindrome_products(1, 9);
+    palindrome_products(1, 99);
 }

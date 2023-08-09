@@ -1,3 +1,5 @@
+use std::ops::Index;
+
 /// `Palindrome` is a newtype which only exists when the contained value is a palindrome number in base ten.
 ///
 /// A struct with a single field which is used to constrain behavior like this is called a "newtype", and its use is
@@ -8,11 +10,11 @@ pub struct Palindrome(u64);
 impl Palindrome {
     /// Create a `Palindrome` only if `value` is in fact a palindrome when represented in base ten. Otherwise, `None`.
     pub fn new(value: u64) -> Option<Palindrome> {
-        let str_value: String = value.to_string().chars().rev().collect();
-        match str_value == value.to_string() {
-            true => Some(Palindrome(value)),
-            false => None
+        if is_palindrome(&value) {
+            return Some(Palindrome(value));
         }
+
+        None
     }
 
     /// Get the value of this palindrome.
@@ -22,20 +24,25 @@ impl Palindrome {
 }
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    let mut products: Vec<u64> = Vec::new();
-    for item in min..=max {
-        for value in min..=max {
-            let multiple: u64 = item * value;
-            if !products.contains(&multiple) && Palindrome::new(multiple) != None {
-                products.push(multiple);
-            }
+    let mut result: Vec<u64> = vec![];
 
+    for item in min..=max {
+        for value in item..=max {
+            let multiple: u64 = item * value;
+            if is_palindrome(&multiple) && !result.contains(&multiple) {
+                result.push(multiple);
+            }
         }
     }
 
+    println!("{:?}", result);
 
-    Some((
-        Palindrome(products.iter().min().unwrap_or_else(None)),
-        Palindrome(1)
-    ))
+    unimplemented!(
+        "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
+    );
+}
+
+fn is_palindrome(value: &u64) -> bool {
+    let str_value: String = value.to_string().chars().rev().collect();
+    str_value == value.to_string()
 }

@@ -1,0 +1,83 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'exercism'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=exercism"
+                ],
+                "filter": {
+                    "name": "exercism",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'exercism'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=exercism",
+                    "--package=exercism"
+                ],
+                "filter": {
+                    "name": "exercism",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'exercism'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=exercism",
+                    "--package=exercism"
+                ],
+                "filter": {
+                    "name": "exercism",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'libtest'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=libtest",
+                    "--package=exercism"
+                ],
+                "filter": {
+                    "name": "libtest",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
