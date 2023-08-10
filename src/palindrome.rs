@@ -27,7 +27,7 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
     for item in min..=max {
         for value in item..=max {
             let multiple: u64 = item * value;
-            if is_palindrome(&multiple) && !result.contains(&multiple) {
+            if is_palindrome(&multiple) {
                 result.push(multiple);
             }
         }
