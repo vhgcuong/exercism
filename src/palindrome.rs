@@ -1,5 +1,3 @@
-use std::ops::Index;
-
 /// `Palindrome` is a newtype which only exists when the contained value is a palindrome number in base ten.
 ///
 /// A struct with a single field which is used to constrain behavior like this is called a "newtype", and its use is
