@@ -41,7 +41,7 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
     let max_palindrome = Palindrome::new(*result.iter().max().unwrap());
 
     match (min_palindrome.is_none(), max_palindrome.is_none()) {
-        (true, true) => return Some((min_palindrome.unwrap(), max_palindrome.unwrap())),
+        (false, false) => return Some((min_palindrome.unwrap(), max_palindrome.unwrap())),
         _ => return None
     }
 }
