@@ -35,11 +35,18 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
         }
     }
 
-    println!("{:?}", result);
+    if result.is_empty() || result.len() <= 1 {
+        return None;
+    }
 
-    unimplemented!(
-        "returns the minimum and maximum number of palindromes of the products of two factors in the range {min} to {max}"
-    );
+    let min_palindrome = Palindrome::new(*result.iter().min().unwrap());
+    let max_palindrome = Palindrome::new(*result.iter().max().unwrap());
+
+    if min_palindrome.is_none() || max_palindrome.is_none() {
+        return None;
+    }
+
+    Some((min_palindrome.unwrap(), max_palindrome.unwrap()))
 }
 
 fn is_palindrome(value: &u64) -> bool {
