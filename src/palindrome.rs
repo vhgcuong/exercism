@@ -42,7 +42,7 @@ pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome
 
     match (min_palindrome.is_none(), max_palindrome.is_none()) {
         (true, true) => return Some((min_palindrome.unwrap(), max_palindrome.unwrap())),
-        (_, _) => return None
+        _ => return None
     }
 }
 
