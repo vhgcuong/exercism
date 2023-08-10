@@ -1,4 +1,4 @@
-use std::io;
+// use std::io;
 
 // use crate::prime_factors::factors;
 // use armstrong::is_armstrong_number;
@@ -14,8 +14,8 @@ use std::io;
 // pub mod reverse;
 
 // pub mod luhn;
-use palindrome::*;
-pub mod palindrome;
+// use palindrome::*;
+// pub mod palindrome;
 
 fn main() {
     // let mut input = String::new();
@@ -55,5 +55,5 @@ fn main() {
 
     // Palindrome::new(123456);
 
-    palindrome_products(1, 99);
+    // palindrome_products(1, 99);
 }
