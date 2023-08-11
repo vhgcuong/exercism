@@ -17,6 +17,9 @@
 // use palindrome::*;
 // pub mod palindrome;
 
+pub mod perfect_numbers;
+use perfect_numbers::*;
+
 fn main() {
     // let mut input = String::new();
     //
@@ -56,4 +59,7 @@ fn main() {
     // Palindrome::new(123456);
 
     // palindrome_products(1, 99);
+
+    println!("{:?}", perfect_numbers::classify(2));
+
 }
