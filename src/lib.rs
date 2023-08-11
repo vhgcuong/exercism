@@ -1,3 +1,4 @@
+pub mod bob;
 pub mod leap;
 pub mod grains;
 pub mod series;
