@@ -19,6 +19,7 @@ mod collatz_conjecture;
 
 mod luhn;
 mod sublist;
+mod custom_set;
 mod perfect_numbers;
 mod palindrome_products;
 mod largest_series_product;
