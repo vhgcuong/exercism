@@ -18,8 +18,7 @@ pub mod collatz_conjecture;
 
 pub mod luhn;
 pub mod sublist;
-pub
-mod custom_set;
+pub mod custom_set;
 pub mod palindrome;
 pub mod perfect_numbers;
 pub mod largest_series_product;
