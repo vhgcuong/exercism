@@ -190,6 +190,9 @@ impl<T> CustomSet<T>
 //                 union.push(value.clone());
 //             }
 //         }
+
+//            // let mut values = self.values.clone();
+//            // values.extend(other.values.clone());
 //
 //         CustomSet::new(&union)
 //     }
