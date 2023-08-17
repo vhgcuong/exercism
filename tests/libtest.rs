@@ -20,6 +20,7 @@ mod collatz_conjecture;
 mod luhn;
 mod sublist;
 mod anagram;
+mod luhn_from;
 mod custom_set;
 mod alphametics;
 mod perfect_numbers;
