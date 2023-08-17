@@ -18,6 +18,7 @@ pub mod collatz_conjecture;
 
 pub mod luhn;
 pub mod sublist;
+pub mod anagram;
 pub mod custom_set;
 pub mod palindrome;
 pub mod alphametics;

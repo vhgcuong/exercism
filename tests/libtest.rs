@@ -19,6 +19,7 @@ mod collatz_conjecture;
 
 mod luhn;
 mod sublist;
+mod anagram;
 mod custom_set;
 mod alphametics;
 mod perfect_numbers;

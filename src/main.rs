@@ -18,7 +18,7 @@
 // pub mod palindrome;
 
 pub mod perfect_numbers;
-use perfect_numbers::*;
+// use perfect_numbers::*;
 
 fn main() {
     // let mut input = String::new();
