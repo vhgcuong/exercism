@@ -17,6 +17,7 @@ pub mod matching_brackets;
 pub mod collatz_conjecture;
 
 pub mod luhn;
+pub mod fizzy;
 pub mod sublist;
 pub mod anagram;
 pub mod luhn_from;
