@@ -25,6 +25,7 @@ mod luhn_from;
 mod luhn_trait;
 mod custom_set;
 mod alphametics;
+mod all_your_base;
 mod perfect_numbers;
 mod palindrome_products;
 mod largest_series_product;

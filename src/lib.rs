@@ -25,5 +25,6 @@ pub mod luhn_trait;
 pub mod custom_set;
 pub mod palindrome;
 pub mod alphametics;
+pub mod all_your_base;
 pub mod perfect_numbers;
 pub mod largest_series_product;
