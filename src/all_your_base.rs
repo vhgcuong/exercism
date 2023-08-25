@@ -37,7 +37,7 @@ pub enum Error {
 ///    However, your function must be able to process input with leading 0 digits.
 ///
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
-    if from_base == 1 {
+    if from_base <= 1 {
         return Err(Error::InvalidInputBase);
     }
 
@@ -45,25 +45,26 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
         return Err(Error::InvalidOutputBase);
     }
 
-    let _ = match number.iter().find(|&x| *x >= from_base) {
-        Some(_) => return Err(Error::InvalidDigit(from_base)),
-        _ => {}
+    if number.iter().any(|x| *x >= from_base) {
+        return Err(Error::InvalidDigit(from_base));
     };
 
-    let mut digit: u32 = number
-        .iter()
-        .enumerate()
-        .rev()
-        .map(|(index , value)| value * from_base.pow(index as u32))
-        .sum();
+    // let mut digit: u32 = number
+    //     .iter()
+    //     .rev()
+    //     .enumerate()
+    //     .map(|(index , value)| {
+    //         return value * from_base.pow(index as u32);
+    //     })
+    //     .sum();
+
+    let mut digit= number.iter().fold(0, |i, vaule| {
+        return i * from_base + vaule;
+    });
 
     let mut result: Vec<u32> = vec![];
     while digit >= to_base {
-        if digit % to_base == 0 {
-            result.push(0);
-        } else {
-            result.push(digit % to_base);
-        }
+        result.push(digit % to_base);
         digit /= to_base;
     }
 
