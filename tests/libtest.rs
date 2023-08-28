@@ -21,6 +21,7 @@ mod luhn;
 mod fizzy;
 mod sublist;
 mod anagram;
+mod acronym;
 mod luhn_from;
 mod luhn_trait;
 mod custom_set;
