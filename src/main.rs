@@ -17,8 +17,12 @@
 // use palindrome::*;
 // pub mod palindrome;
 
-pub mod perfect_numbers;
+// pub mod perfect_numbers;
 // use perfect_numbers::*;
+
+// pub mod acronym;
+// use acronym::*;
+
 
 fn main() {
     // let mut input = String::new();
@@ -60,6 +64,8 @@ fn main() {
 
     // palindrome_products(1, 99);
 
-    println!("{:?}", perfect_numbers::classify(2));
+    // println!("{:?}", perfect_numbers::classify(2));
+
+    // abbreviate("Portable Network Graphics");
 
 }
