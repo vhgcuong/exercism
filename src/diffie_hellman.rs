@@ -1,13 +1,10 @@
 pub fn private_key(p: u64) -> u64 {
-    unimplemented!("Pick a private key greater than 1 and less than {p}")
+    p/2
 }
-
 pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
-    unimplemented!("Calculate public key using prime numbers {p} and {g}, and private key {a}")
+    let me = |(r, b), e| (if (a >> e) % 2 != 0 { r*b % p } else { r }, b*b % p);
+    (0..(64 - a.leading_zeros())).fold((1, g), me).0
 }
-
 pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
-    unimplemented!(
-        "Calculate secret key using prime number {p}, public key {b_pub}, and private key {a}"
-    )
+    public_key(p, b_pub, a)
 }
