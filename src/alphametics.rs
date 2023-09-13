@@ -10,7 +10,6 @@ pub fn solve(input: &str) -> Option<HashMap<char, u8>> {
 
     // sum cannot be shorter than addends
     if sum.iter().any(|x| x.len() > answer.len()) {
-        println!("1");
         return None;
     }
 
@@ -45,6 +44,5 @@ pub fn solve(input: &str) -> Option<HashMap<char, u8>> {
         }
     }
 
-    println!("4");
     None
 }
