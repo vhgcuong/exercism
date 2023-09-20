@@ -1,23 +1,31 @@
-static NEIGBOURHOOD_OFFSETS: &'static [(i32, i32)] = &[
+static NEIGHBOURHOOD_OFFSETS: &[(i32, i32)] = &[
     (-1, -1), (0, -1), (1, -1),
     (-1,  0),          (1,  0),
     (-1,  1), (0,  1), (1,  1),
 ];
-pub fn annotate(field: &[&str]) -> Vec<String> {
-    let height = field.len() as i32;
-    (0..height).map(|y| {
-        let width = field[y as usize].len() as i32;
-        (0..width).map(|x| {
-            if field[y as usize].as_bytes()[x as usize] == b'*' {
-                '*'
-            } else {
-                match NEIGBOURHOOD_OFFSETS.iter()
-                    .map(|&(ox, oy)| (x + ox, y + oy))
-                    .filter(|&(x, y)| (0 <= x && x < width) && (0 <= y && y < height))
-                    .filter(|&(x, y)| field[y as usize].as_bytes()[x as usize] == b'*')
-                    .count() {
-                    0 => ' ',
-                    n => (n as u8 + '0' as u8) as char
+
+pub fn annotate(minefield: &[&str]) -> Vec<String> {
+    minefield.iter().enumerate().map(|(y, row)| {
+        row.chars().enumerate().map(|(x, c)| match c {
+            '*' => '*',
+            _ => {
+                let count = NEIGHBOURHOOD_OFFSETS.iter()
+                    .filter(|&&(ox, oy)| {
+                        let nx = x as i32 + ox;
+                        let ny = y as i32 + oy;
+                        nx >= 0 && nx < row.len() as i32 && ny >= 0 && ny < minefield.len() as i32
+                    })
+                    .filter(|&&(ox, oy)| {
+                        let nx = x as i32 + ox;
+                        let ny = y as i32 + oy;
+                        minefield[ny as usize].chars().nth(nx as usize).unwrap() == '*'
+                    })
+                    .count();
+
+                if count > 0 {
+                    (count as u8 + b'0') as char
+                } else {
+                    ' '
                 }
             }
         }).collect()
