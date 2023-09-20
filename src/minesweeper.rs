@@ -1,29 +1,25 @@
-pub fn annotate(minefield: &[&str]) -> Vec<String> {
-    let mut result = Vec::new();
-
-    for (x, row) in minefield.iter().enumerate() {
-        let mut result_row = String::new();
-        for (y, item) in row.chars().enumerate() {
-            if item == '*' {
-                result_row.push('*');
+static NEIGBOURHOOD_OFFSETS: &'static [(i32, i32)] = &[
+    (-1, -1), (0, -1), (1, -1),
+    (-1,  0),          (1,  0),
+    (-1,  1), (0,  1), (1,  1),
+];
+pub fn annotate(field: &[&str]) -> Vec<String> {
+    let height = field.len() as i32;
+    (0..height).map(|y| {
+        let width = field[y as usize].len() as i32;
+        (0..width).map(|x| {
+            if field[y as usize].as_bytes()[x as usize] == b'*' {
+                '*'
             } else {
-                let mut count = 0;
-                for i in x.saturating_sub(1)..=(x + 1) {
-                    for j in y.saturating_sub(1)..=(y + 1) {
-                        if i < minefield.len() && j < row.len() && minefield[i].chars().nth(j) == Some('*') {
-                            count += 1;
-                        }
-                    }
-                }
-                if count > 0 {
-                    result_row.push_str(&count.to_string());
-                } else {
-                    result_row.push(' ');
+                match NEIGBOURHOOD_OFFSETS.iter()
+                    .map(|&(ox, oy)| (x + ox, y + oy))
+                    .filter(|&(x, y)| (0 <= x && x < width) && (0 <= y && y < height))
+                    .filter(|&(x, y)| field[y as usize].as_bytes()[x as usize] == b'*')
+                    .count() {
+                    0 => ' ',
+                    n => (n as u8 + '0' as u8) as char
                 }
             }
-        }
-        result.push(result_row);
-    }
-
-    result
+        }).collect()
+    }).collect()
 }
