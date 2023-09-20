@@ -25,6 +25,7 @@ mod acronym;
 mod luhn_from;
 mod luhn_trait;
 mod custom_set;
+mod minesweeper;
 mod alphametics;
 mod all_your_base;
 mod perfect_numbers;
