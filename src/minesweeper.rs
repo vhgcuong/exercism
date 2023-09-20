@@ -1,219 +1,55 @@
 pub fn annotate(minefield: &[&str]) -> Vec<String> {
-    if minefield.len() == 0 {
-        return vec![];
+    if minefield.is_empty() {
+        return Vec::new();
     }
 
-    let mut cleaned_strs = minefield
+    let cleaned_strs: Vec<Vec<char>> = minefield
         .iter()
-        .map(|x| x.chars().map(|ch| ch.to_string()).collect::<Vec<_>>())
-        .collect::<Vec<_>>();
+        .map(|x| x.chars().collect())
+        .collect();
 
-    let (x_len, y_len) = {
-        ( cleaned_strs.len(), cleaned_strs.get(0).map(|x| x.len()).unwrap())
-    };
+    let (x_len, y_len) = (cleaned_strs.len(), cleaned_strs[0].len());
 
-    let updated_strs = cleaned_strs.clone(); // Clone the original vector
-    for (x, row) in updated_strs.iter().enumerate() {
+    let mut result = Vec::new();
+
+    for (x, row) in cleaned_strs.iter().enumerate() {
+        let mut result_row = String::new();
         for (y, item) in row.iter().enumerate() {
-            let mut count: u8 = 0;
-            match item.as_str() {
-                "*" => { },
-                _ => {
-                    match (x > 0, y > 0, x+1 < x_len, y+1 < y_len) {
-                        (true, false, false, false) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, true, false, false) => {
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, false, true, false) => {
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, false, false, true) => {
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, true, false, false) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
+            if *item == '*' {
+                result_row.push('*');
+            } else {
+                let count = count_mines(&cleaned_strs, x as isize, y as isize, x_len as isize, y_len as isize);
+                if count > 0 {
+                    result_row.push(char::from_digit(count as u32, 10).unwrap());
+                } else {
+                    result_row.push(' ');
+                }
+            }
+        }
+        result.push(result_row);
+    }
 
-                            if updated_strs[x-1][y-1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, false, true, false) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, false, false, true) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
+    result
+}
 
-                            if updated_strs[x-1][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, true, false, true) => {
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, true, true, false) => {
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
+fn count_mines(cleaned_strs: &Vec<Vec<char>>, x: isize, y: isize, x_len: isize, y_len: isize) -> u8 {
+    let mut count: u8 = 0;
 
-                            if updated_strs[x+1][y-1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, false, true, true) => {
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
+    for dx in -1..=1 {
+        for dy in -1..=1 {
+            if dx == 0 && dy == 0 {
+                continue;
+            }
+            let new_x = x + dx;
+            let new_y = y + dy;
 
-                            if updated_strs[x+1][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, true, true, false) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-
-                            if updated_strs[x-1][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y-1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, true, false, true) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-
-                            if updated_strs[x-1][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x-1][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (true, false, true, true) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-
-                            if updated_strs[x+1][y+1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x-1][y+1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (false, true, true, true) => {
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-
-                            if updated_strs[x+1][y+1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y-1] == "*" {
-                                count += 1;
-                            }
-
-                        },
-                        (true, true, true, true) => {
-                            if updated_strs[x-1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x][y+1] == "*" {
-                                count += 1;
-                            }
-
-                            if updated_strs[x+1][y+1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x-1][y-1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x-1][y+1] == "*" {
-                                count += 1;
-                            }
-                            if updated_strs[x+1][y-1] == "*" {
-                                count += 1;
-                            }
-                        },
-                        (_, _, _, _) => { }
-                    }
-
-                    if count > 0 {
-                        cleaned_strs[x][y] = count.to_string();
-                    }
+            if new_x >= 0 && new_x < x_len && new_y >= 0 && new_y < y_len {
+                if cleaned_strs[new_x as usize][new_y as usize] == '*' {
+                    count += 1;
                 }
             }
         }
     }
 
-    cleaned_strs.iter().map(|x| x.join("")).collect()
+    count
 }
