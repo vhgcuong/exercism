@@ -16,6 +16,7 @@ pub mod sum_of_multiples;
 pub mod matching_brackets;
 pub mod collatz_conjecture;
 
+// Medium
 pub mod luhn;
 pub mod fizzy;
 pub mod sublist;
@@ -30,3 +31,6 @@ pub mod alphametics;
 pub mod all_your_base;
 pub mod perfect_numbers;
 pub mod largest_series_product;
+
+// Hard
+pub mod parallel_letter_frequency;
