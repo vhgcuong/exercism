@@ -37,6 +37,7 @@ const STAR_SPANGLED_BANNER: [&str; 8] = [
 fn no_texts() {
     assert_eq!(frequency::frequency(&[], 4), HashMap::new());
 }
+
 #[test]
 #[ignore]
 fn one_letter() {
@@ -44,6 +45,7 @@ fn one_letter() {
     hm.insert('a', 1);
     assert_eq!(frequency::frequency(&["a"], 4), hm);
 }
+
 #[test]
 #[ignore]
 fn case_insensitivity() {
@@ -51,12 +53,14 @@ fn case_insensitivity() {
     hm.insert('a', 2);
     assert_eq!(frequency::frequency(&["aA"], 4), hm);
 }
+
 #[test]
 #[ignore]
 fn many_empty_lines() {
     let v = vec![""; 1000];
     assert_eq!(frequency::frequency(&v[..], 4), HashMap::new());
 }
+
 #[test]
 #[ignore]
 fn many_times_same_text() {
@@ -67,16 +71,19 @@ fn many_times_same_text() {
     hm.insert('c', 1000);
     assert_eq!(frequency::frequency(&v[..], 4), hm);
 }
+
 #[test]
 #[ignore]
 fn punctuation_doesnt_count() {
     assert!(!frequency::frequency(&WILHELMUS, 4).contains_key(&','));
 }
+
 #[test]
 #[ignore]
 fn numbers_dont_count() {
     assert!(!frequency::frequency(&["Testing, 1, 2, 3"], 4).contains_key(&'1'));
 }
+
 #[test]
 #[ignore]
 fn all_three_anthems_1_worker() {
@@ -91,6 +98,7 @@ fn all_three_anthems_1_worker() {
     assert_eq!(freqs.get(&'t'), Some(&56));
     assert_eq!(freqs.get(&'ü'), Some(&2));
 }
+
 #[test]
 #[ignore]
 fn all_three_anthems_3_workers() {
@@ -105,6 +113,7 @@ fn all_three_anthems_3_workers() {
     assert_eq!(freqs.get(&'t'), Some(&56));
     assert_eq!(freqs.get(&'ü'), Some(&2));
 }
+
 #[test]
 #[ignore]
 fn non_integer_multiple_of_threads() {
