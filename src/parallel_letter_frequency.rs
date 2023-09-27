@@ -1,35 +1,24 @@
 use std::{ collections::HashMap, thread, sync::Arc };
+use std::sync::Mutex;
 
 pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
+    let counters = Arc::new(Mutex::new(HashMap::<char, usize>::new()));
     let data: Vec<String> = input.iter().map(|&s| s.to_ascii_lowercase()).collect();
-    let arc = Arc::new(data);
 
-    let mut handlers: Vec<_> = Vec::with_capacity(worker_count);
-    (0..worker_count).for_each(|worker| {
-        let arc_clone = Arc::clone(&arc);
-        let handle = thread::spawn(move || {
-            let mut counts = HashMap::<char, usize>::new();
-
-            arc_clone.iter().enumerate().for_each(|(index, value)| {
-                if index % worker_count == worker {
-                    value.chars().filter(|ch| ch.is_alphabetic()).for_each(|ch| *counts.entry(ch).or_default() += 1)
+    thread::scope(|scope| {
+        let chunk_size = data.len() / worker_count + 1;
+        for item in data.chunks(chunk_size) {
+            let mutex = counters.clone();
+            scope.spawn(move || {
+                for str in item {
+                    str.chars().filter(|ch| ch.is_alphabetic()).for_each(|ch| {
+                        *mutex.lock().unwrap().entry(ch).or_default() += 1;
+                    })
                 }
             });
-
-            counts
-        });
-        handlers.push(handle);
+        }
     });
 
-    let mut counters = HashMap::<char, usize>::new();
-    for handler in handlers {
-        for (key, value) in handler.join().unwrap() {
-            let _ = *counters
-                .entry(key)
-                .and_modify(|count| *count += value)
-                .or_insert(value);
-        }
-    }
-
-    counters
+    let m = counters.lock().unwrap();
+    m.to_owned()
 }
