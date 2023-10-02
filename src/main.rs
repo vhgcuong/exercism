@@ -1,5 +1,5 @@
-use exercism::parallel_letter_frequency as frequency;
+use exercism::rna_transcription as dna;
 
 fn main() {
-    frequency::frequency(&["abc"; 999], 4);
+    dna::Dna::new("CGA").unwrap();
 }

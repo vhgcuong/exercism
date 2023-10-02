@@ -4,44 +4,35 @@ pub struct Dna(String);
 #[derive(Debug, PartialEq, Eq)]
 pub struct Rna(String);
 
+const DNA: [char; 4] = ['G', 'C', 'T', 'A'];
+const RNA: [char; 4] = ['G', 'C', 'U', 'A'];
+
 impl Dna {
     pub fn new(dna: &str) -> Result<Dna, usize> {
-        let nucleotides: Vec<char> = vec!['G', 'C', 'T', 'A'];
-        if dna.chars().all(|ch| nucleotides.contains(&ch)) {
-            return Ok(Dna(dna.to_string()));
+        match dna.chars().position(|ch| !DNA.contains(&ch)) {
+            None => Ok(Dna(dna.to_owned())),
+            Some(x) => Err(x)
         }
-
-        if let Some(position) = dna.chars().position(|ch| !nucleotides.contains(&ch)) {
-            return Err(position);
-        }
-
-        Err(0)
     }
 
     pub fn into_rna(self) -> Rna {
-        let rna = self.0.chars().map(|ch| match ch {
-            'G' => 'C',
-            'C' => 'G',
-            'T' => 'A',
-            'A' => 'U',
-            _ => '_'
-        }).collect::<String>();
-
-        Rna(rna)
+        Rna(self.0.chars()
+            .map(|ch| match ch {
+                'G' => 'C',
+                'C' => 'G',
+                'T' => 'A',
+                'A' => 'U',
+                _ => ch
+            })
+            .collect::<String>())
     }
 }
 
 impl Rna {
     pub fn new(rna: &str) -> Result<Rna, usize> {
-        let nucleotides: Vec<char> = vec!['G', 'C', 'U', 'A'];
-        if rna.chars().all(|ch| nucleotides.contains(&ch)) {
-            return Ok(Rna(rna.to_string()));
+        match rna.chars().position(|ch| !RNA.contains(&ch)) {
+            None => Ok(Rna(rna.to_owned())),
+            Some(x) => Err(x)
         }
-
-        if let Some(position) = rna.chars().position(|ch| !nucleotides.contains(&ch)) {
-            return Err(position);
-        }
-
-        Err(0)
     }
 }
