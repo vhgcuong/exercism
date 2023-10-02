@@ -31,6 +31,7 @@ pub mod alphametics;
 pub mod all_your_base;
 pub mod perfect_numbers;
 pub mod largest_series_product;
+pub mod rna_transcription;
 
 // Hard
 pub mod parallel_letter_frequency;
