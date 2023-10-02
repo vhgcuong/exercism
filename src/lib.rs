@@ -28,10 +28,11 @@ pub mod custom_set;
 pub mod palindrome;
 pub mod minesweeper;
 pub mod alphametics;
+pub mod binary_search;
 pub mod all_your_base;
 pub mod perfect_numbers;
-pub mod largest_series_product;
 pub mod rna_transcription;
+pub mod largest_series_product;
 
 // Hard
 pub mod parallel_letter_frequency;

@@ -33,3 +33,4 @@ mod palindrome_products;
 mod largest_series_product;
 mod parallel_letter_frequency;
 mod rna_transcription;
+mod binary_search;
