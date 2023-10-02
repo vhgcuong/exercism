@@ -1,35 +1,38 @@
 ### Exercism
 
-Exercism is a platform that helps you learn programming by solving practical exercises in various programming languages.
-
-
-###  List of Rust exercises on Exercism
+Exercism is a platform that helps you learn programming by solving practical exercises in various programming languages.###  List of Rust exercises on Exercism
 
 1. Hello World
 2. Reverse String 
 3. Anagram
 4. Sublist
-5. Luhn
-6. Armstrong Numbers
-7. Beer Song
-8. Difference of Squares
-9. Grains
-10. Leap
-11. Nth Prime
-12. Prime Factors
-13. Proverb
-14. Raindrops
-15. Sum of Multiples
-16. Bob
-17. High Scores
-18. Matching Brackets
-19. Palindrome Products
-20. Perfect Numbers
-21. Custom Set
-22. Collatz Conjecture
-23. Series
-24. Largest Series Product
-25. Luhn From
-26. Luhn Trait
-27. Fizzy
+5. Minesweeper
+6. Luhn
+7. Parallel Letter Frequency
+8. Armstrong Numbers
+9. Beer Song
+10. Difference of Squares
+11. Grains
+12. Leap
+13. Nth Prime
+14. Prime Factors
+15. Proverb
+16. Raindrops
+17. Sum of Multiples
+18. Bob
+19. High Scores
+20. Matching Brackets
+21. Acronym
+22. All Your Base
+23. Alphametics
+24. Palindrome Products
+25. Perfect Numbers
+26. Custom Set
+27. Collatz Conjecture
+28. Diffie-Hellman
+29. Series
+30. Largest Series Product
+31. Luhn From
+32. Luhn Trait
+33. Fizzy
 
