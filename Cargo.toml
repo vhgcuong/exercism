@@ -1,6 +1,6 @@
 [package]
 name = "exercism"
-version = "0.1.9"
+version = "0.2.0"
 edition = "2021"
 authors = ["Yotoko <vhgcuong95@gmail.com", "CuongD9 <cuong.vuhung@vti.com.vn"]
 rust-version = "1.70.0"
