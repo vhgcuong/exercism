@@ -1,19 +1,6 @@
-///
-///
-/// # Arguments
-///
-/// * `array`:
-/// * `key`:
-///
-/// returns: Option<usize>
-///
-/// # Examples
-///
-/// ```
-///
-/// ```
+use std::cmp::Ordering;
 
-pub fn find(array: &[i32], key: i32) -> Option<usize> {
+pub fn find<T: Ord>(array: &[T], key: T) -> Option<usize> {
     if array.is_empty() {
         return None;
     }
@@ -22,22 +9,18 @@ pub fn find(array: &[i32], key: i32) -> Option<usize> {
     let mut hight = array.len() - 1;
 
     while low <= hight {
-        let middle = (low + hight) / 2;
-        if key == array[middle] {
-            return Some(middle);
-        }
+        let mid = (low + hight) / 2;
 
-        if key < array[middle] {
-            if middle == 0 {
-                return None;
-            }
-            hight = middle - 1;
-        }
-
-        if key > array[middle] {
-            low = middle + 1;
+        match array[mid].cmp(&key) {
+            Ordering::Less => low = mid + 1,
+            Ordering::Greater => {
+                if mid == 0 {
+                    return None;
+                }
+                hight = mid - 1
+            },
+            Ordering::Equal => return Some(mid),
         }
     }
-
     None
 }
