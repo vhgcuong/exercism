@@ -1,6 +1,7 @@
 use std::cmp::Ordering;
 
-pub fn find<T: Ord>(array: &[T], key: T) -> Option<usize> {
+pub fn find<U: AsRef<[T]>, T: Ord>(array: U, key: T) -> Option<usize> {
+    let array = array.as_ref();
     if array.is_empty() {
         return None;
     }
