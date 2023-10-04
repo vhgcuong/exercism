@@ -1,3 +1,6 @@
 pub fn spiral_matrix(size: u32) -> Vec<Vec<u32>> {
-    todo!("Function that returns the spiral matrix of square size {size}");
+    let mut matrix = vec![vec![0, size], size];
+
+
+    matrix
 }
