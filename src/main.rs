@@ -1,5 +1,5 @@
-use exercism::rna_transcription as dna;
+use exercism::spiral_matrix::spiral_matrix;
 
 fn main() {
-    dna::Dna::new("CGA").unwrap();
+    spiral_matrix(6);
 }
