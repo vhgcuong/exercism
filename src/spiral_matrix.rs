@@ -10,9 +10,7 @@ pub fn spiral_matrix(size: u32) -> Vec<Vec<u32>> {
             matrix[pos.0 as usize][pos.1 as usize] = count;
             count += 1;
         }
-        println!("matrix: {:?}", matrix);
-        println!("dir: {}, pos: {:?}", dir, pos);
-        println!("--------------------------------------");
+
         length -= 1;
         for _ in 0..length {
             pos = (pos.0 + dir, pos.1);
@@ -21,13 +19,7 @@ pub fn spiral_matrix(size: u32) -> Vec<Vec<u32>> {
         }
 
         dir *= -1;
-
-        println!("matrix: {:?}", matrix);
-        println!("dir: {}, pos: {:?}", dir, pos);
-        println!();
     }
-
-    println!("{:?}", matrix);
 
     matrix
 }
