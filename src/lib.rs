@@ -9,6 +9,7 @@ pub mod nth_prime;
 pub mod beer_song;
 pub mod armstrong;
 pub mod raindrops;
+pub mod gigasecond;
 pub mod high_scores;
 pub mod prime_factors;
 pub mod diffie_hellman;

@@ -23,6 +23,7 @@ mod sublist;
 mod anagram;
 mod acronym;
 mod luhn_from;
+mod gigasecond;
 mod luhn_trait;
 mod custom_set;
 mod minesweeper;
