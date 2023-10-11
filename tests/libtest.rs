@@ -36,3 +36,4 @@ mod parallel_letter_frequency;
 mod rna_transcription;
 mod binary_search;
 mod spiral_matrix;
+mod allergies;
