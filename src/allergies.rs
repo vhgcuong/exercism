@@ -45,7 +45,7 @@ impl Allergies {
         let mut allergens = Vec::<Allergen>::new();
 
         for flag in 0..=7 {
-            if score & 1 << flag != 0 {
+            if score & (1 << flag) != 0 {
                 allergens.push(ALLERGENS[flag as usize]);
             }
         }
