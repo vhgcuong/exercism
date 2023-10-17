@@ -34,6 +34,7 @@ pub mod binary_search;
 pub mod all_your_base;
 pub mod spiral_matrix;
 pub mod perfect_numbers;
+pub mod nucleotide_count;
 pub mod rna_transcription;
 pub mod largest_series_product;
 
