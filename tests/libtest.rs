@@ -39,3 +39,4 @@ mod spiral_matrix;
 mod allergies;
 mod nucleotide_count;
 mod hamming;
+mod isbn_verifier;

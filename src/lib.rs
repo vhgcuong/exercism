@@ -31,6 +31,7 @@ pub mod custom_set;
 pub mod palindrome;
 pub mod minesweeper;
 pub mod alphametics;
+pub mod isbn_verifier;
 pub mod binary_search;
 pub mod all_your_base;
 pub mod spiral_matrix;
