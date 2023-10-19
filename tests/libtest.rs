@@ -38,3 +38,4 @@ mod binary_search;
 mod spiral_matrix;
 mod allergies;
 mod nucleotide_count;
+mod hamming;
