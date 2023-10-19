@@ -5,15 +5,11 @@ pub fn hamming_distance(s1: &str, s2: &str) -> Option<usize> {
         return None;
     }
 
-    if s1.is_empty() || s2 == s1 {
-        return Some(0);
-    }
+    let distance = s1
+        .chars()
+        .zip(s2.chars())
+        .filter(|(ch1, ch2)| ch1 != ch2)
+        .count();
 
-    let mut count = 0;
-    for (key, ch) in s1.chars().enumerate() {
-        if s2.as_bytes()[key] != ch as u8 {
-            count += 1;
-        }
-    }
-    Some(count)
+    Some(distance)
 }
