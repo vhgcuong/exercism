@@ -3,7 +3,7 @@ use std::collections::{HashMap, HashSet};
 use itertools::Itertools;
 
 pub fn solve(input: &str) -> Option<HashMap<char, u8>> {
-    let mut iter = input.clone().split("==");
+    let mut iter = input.split("==");
 
     let sum: Vec<&str> = iter.next().unwrap().split("+").map(|x| x.trim()).collect();
     let answer: &str = iter.next().unwrap().trim();
