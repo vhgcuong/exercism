@@ -4,8 +4,21 @@ pub fn is_valid_isbn(isbn: &str) -> bool {
         return false;
     }
 
-    let isbn_digit: Vec<_> = isbn.to_string().chars().filter(|c| c.is_ascii_digit()).collect();
-    println!("{:?}", isbn_digit);
+    let mut isbn_digit: Vec<_> = isbn.to_string().chars().filter(|&c| c != '-').collect();
+    let last_isbn = isbn_digit.pop().unwrap();
+
+    if isbn_digit.iter().any(|c| c.is_ascii_alphabetic()) {
+        return false;
+    }
+
+    isbn_digit
+        .iter()
+        .rev()
+        .filter_map(|ch| ch.to_digit(10))
+        .enumerate()
+        .for_each(|(key, value)| {
+
+        });
 
     true
     // todo!("Is {isbn:?} a valid ISBN number?");
