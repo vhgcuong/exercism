@@ -4,22 +4,26 @@ pub fn is_valid_isbn(isbn: &str) -> bool {
         return false;
     }
 
-    let mut isbn_digit: Vec<_> = isbn.to_string().chars().filter(|&c| c != '-').collect();
-    let last_isbn = isbn_digit.pop().unwrap();
-
-    if isbn_digit.iter().any(|c| c.is_ascii_alphabetic()) {
+    let isbn_digit: Vec<char> = isbn.to_string().chars().filter(|&c| c != '-').collect();
+    if isbn_digit.len() != 10 {
         return false;
     }
 
-    isbn_digit
-        .iter()
-        .rev()
-        .filter_map(|ch| ch.to_digit(10))
-        .enumerate()
-        .for_each(|(key, value)| {
+    let mut sum_isbn: u32 = 0;
+    for (key, value) in isbn_digit.iter().rev().enumerate() {
+        if key == 0 {
+            match value {
+                'X' => sum_isbn += 10,
+                '0'..='9' => sum_isbn += value.to_digit(10).unwrap(),
+                _ => return false
+            }
+        } else {
+            if !value.is_digit(10) {
+                return false;
+            }
+            sum_isbn += (key as u32 + 1) * value.to_digit(10).unwrap();
+        }
+    };
 
-        });
-
-    true
-    // todo!("Is {isbn:?} a valid ISBN number?");
+    sum_isbn % 11 == 0
 }
