@@ -1,4 +1,4 @@
-use exercism::isbn_verifier;
+use exercism::pythagorean_triplet;
 fn main() {
-    isbn_verifier::is_valid_isbn("3-598-21507-X");
+    pythagorean_triplet::find(1001);
 }
