@@ -24,6 +24,7 @@ pub mod sublist;
 pub mod anagram;
 pub mod acronym;
 pub mod hamming;
+pub mod triangle;
 pub mod luhn_from;
 pub mod allergies;
 pub mod luhn_trait;

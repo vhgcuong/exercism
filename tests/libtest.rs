@@ -41,3 +41,4 @@ mod nucleotide_count;
 mod hamming;
 mod isbn_verifier;
 mod pythagorean_triplet;
+mod triangle;
