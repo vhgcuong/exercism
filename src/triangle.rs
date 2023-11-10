@@ -14,23 +14,14 @@ impl Triangle {
     }
 
     pub fn is_equilateral(&self) -> bool {
-        if self.0 == self.1 && self.1 == self.2 {
-            return true;
-        }
-        false
+        self.0 == self.1 && self.1 == self.2
     }
 
     pub fn is_scalene(&self) -> bool {
-        match (self.is_equilateral(), self.is_isosceles()) {
-            (false, false) => true,
-            _ => false
-        }
+        self.0 != self.1 && self.1 != self.2 && self.2 != self.0
     }
 
     pub fn is_isosceles(&self) -> bool {
-        match (self.0 == self.1, self.1 == self.2, self.2 == self.0) {
-            (true, false, _) | (false, true, _) | (false, _, true) => true,
-            _ => false
-        }
+        self.0 == self.1 || self.1 == self.2 || self.0 == self.2
     }
 }
