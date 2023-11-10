@@ -19,6 +19,7 @@ pub mod collatz_conjecture;
 
 // Medium
 pub mod luhn;
+pub mod clock;
 pub mod fizzy;
 pub mod sublist;
 pub mod anagram;
