@@ -14,42 +14,49 @@ impl Clock {
             minutes
         };
 
-        match minutes {
-            i32::MIN..=-1 => {
-                if minutes % 60 == 0 {
-                    time.minutes = 0;
-                    time.hours += minutes / 60;
-                } else {
-                    time.minutes = minutes % 60 + 60;
-                    time.hours += minutes / 60 - 1;
-                }
-            },
-            60..=i32::MAX => {
-                time.minutes = minutes % 60;
-                time.hours += minutes / 60;
-            },
-            _ => {}
-        }
-
-        match time.hours {
-            i32::MIN..=-1 => {
-                if time.hours % 24 == 0 {
-                    time.hours = 0;
-                } else {
-                    time.hours = time.hours % 24 + 24;
-                }
-            },
-            24..=i32::MAX => {
-                time.hours = time.hours % 24;
-            },
-            _ => {}
-        }
+        time.adjust_minutes();
+        time.adjust_hours();
 
         time
     }
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
         Clock::new(self.hours, self.minutes + minutes)
+    }
+
+    fn adjust_hours(&mut self) {
+        match self.hours {
+            i32::MIN..=-1 => {
+                if self.hours % 24 == 0 {
+                    self.hours = 0;
+                } else {
+                    self.hours = self.hours % 24 + 24;
+                }
+            },
+            24..=i32::MAX => {
+                self.hours = self.hours % 24;
+            },
+            _ => {}
+        }
+    }
+
+    fn adjust_minutes(&mut self) {
+        match self.minutes {
+            i32::MIN..=-1 => {
+                if self.minutes % 60 == 0 {
+                    self.hours += self.minutes / 60;
+                    self.minutes = 0;
+                } else {
+                    self.hours += self.minutes / 60 - 1;
+                    self.minutes = self.minutes % 60 + 60;
+                }
+            },
+            60..=i32::MAX => {
+                self.hours += self.minutes / 60;
+                self.minutes = self.minutes % 60;
+            },
+            _ => {}
+        }
     }
 }
 
