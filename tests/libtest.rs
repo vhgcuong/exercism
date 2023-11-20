@@ -43,3 +43,4 @@ mod isbn_verifier;
 mod pythagorean_triplet;
 mod triangle;
 mod clock;
+mod knapsack;
