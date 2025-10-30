@@ -7,15 +7,30 @@ pub struct Item {
 }
 
 pub fn maximum_value(max_weight: u32, items: &[Item]) -> u32 {
+    if items.len() == 0 {
+        return 0
+    }
 
     let mut results: Vec<Vec<Item>> = vec![];
     for (index, item) in items.iter().enumerate() {
-        let remaining_slice = &items[index+1..];
-        let last = if remaining_slice.len() > 1 { remaining_slice.len() - 1 } else { 0 };
         let mut sum: u32 = item.weight;
+
+        if sum > max_weight {
+            continue;
+        }
+
+        if sum == max_weight {
+            results.push(vec![item.clone()]);
+            continue;
+        }
+
         let mut data: Vec<Item> = vec![item.clone()];
-        for (index2, item2) in remaining_slice.iter().enumerate() {
-            println!("{:?}", item2);
+        let last = if items.len() > 1 { items.len() - 1 } else { 0 };
+        for (index2, item2) in items.iter().enumerate() {
+            if index2 == index {
+                continue;
+            }
+
             sum += item2.weight;
             
             match sum.cmp(&max_weight)  {
@@ -40,9 +55,19 @@ pub fn maximum_value(max_weight: u32, items: &[Item]) -> u32 {
         }
     }
 
-    results.iter().map(|items| {
+    if results.len() == 0 {
+        return 0;
+    }
+
+    let max = results.iter().map(|items| {
         items.iter().map(|item| {
             item.value
         }).sum()
-    }).max().unwrap()
+    }).max().unwrap();
+
+    results.iter().for_each(|items| {
+        println!("{:?}", items);
+    });
+
+    max
 }
